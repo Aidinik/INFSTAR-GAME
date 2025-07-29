@@ -1,32 +1,39 @@
 
-if (typeof gdjs.evtsExt__CameraShake__SetLoopPeriodY !== "undefined") {
-  gdjs.evtsExt__CameraShake__SetLoopPeriodY.registeredGdjsCallbacks.forEach(callback =>
+if (typeof gdjs.evtsExt__TimeFormatter__SecondsToHHMMSS !== "undefined") {
+  gdjs.evtsExt__TimeFormatter__SecondsToHHMMSS.registeredGdjsCallbacks.forEach(callback =>
     gdjs._unregisterCallback(callback)
   );
 }
 
-gdjs.evtsExt__CameraShake__SetLoopPeriodY = {};
+gdjs.evtsExt__TimeFormatter__SecondsToHHMMSS = {};
 
 
-gdjs.evtsExt__CameraShake__SetLoopPeriodY.userFunc0x9a0c10 = function GDJSInlineCode(runtimeScene, eventsFunctionContext) {
-"use strict";
-const name = eventsFunctionContext.getArgument("Name");
+gdjs.evtsExt__TimeFormatter__SecondsToHHMMSS.userFunc0xa168d0 = function GDJSInlineCode(runtimeScene, eventsFunctionContext) {
+var format_time = function (time_second) {
+    date = new Date(null);
+    date.setSeconds(time_second);
+    if (time_second >= 3600) {
+        return date.toISOString().substr(11, 8); // MM:SS
+    } else {
+        return date.toISOString().substr(14, 5); // HH:MM:SS
+    }
+}
 
-gdjs._cameraShakeExtension.noiseManager.getGenerator(name).yLoopPeriod = eventsFunctionContext.getArgument("LoopPeriod");
+eventsFunctionContext.returnValue = format_time(eventsFunctionContext.getArgument("TimeInSeconds"));
 };
-gdjs.evtsExt__CameraShake__SetLoopPeriodY.eventsList0 = function(runtimeScene, eventsFunctionContext) {
+gdjs.evtsExt__TimeFormatter__SecondsToHHMMSS.eventsList0 = function(runtimeScene, eventsFunctionContext) {
 
 {
 
 
-gdjs.evtsExt__CameraShake__SetLoopPeriodY.userFunc0x9a0c10(runtimeScene, typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined);
+gdjs.evtsExt__TimeFormatter__SecondsToHHMMSS.userFunc0xa168d0(runtimeScene, typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined);
 
 }
 
 
 };
 
-gdjs.evtsExt__CameraShake__SetLoopPeriodY.func = function(runtimeScene, LoopPeriod, Name, parentEventsFunctionContext) {
+gdjs.evtsExt__TimeFormatter__SecondsToHHMMSS.func = function(runtimeScene, TimeInSeconds, parentEventsFunctionContext) {
 var eventsFunctionContext = {
   _objectsMap: {
 },
@@ -34,8 +41,8 @@ var eventsFunctionContext = {
 },
   _behaviorNamesMap: {
 },
-  globalVariablesForExtension: runtimeScene.getGame().getVariablesForExtension("CameraShake"),
-  sceneVariablesForExtension: runtimeScene.getScene().getVariablesForExtension("CameraShake"),
+  globalVariablesForExtension: runtimeScene.getGame().getVariablesForExtension("TimeFormatter"),
+  sceneVariablesForExtension: runtimeScene.getScene().getVariablesForExtension("TimeFormatter"),
   localVariables: [],
   getObjects: function(objectName) {
     return eventsFunctionContext._objectArraysMap[objectName] || [];
@@ -74,18 +81,17 @@ parentEventsFunctionContext.getInstancesCountOnScene(objectName) :
     return runtimeScene.getLayer(layerName);
   },
   getArgument: function(argName) {
-if (argName === "LoopPeriod") return LoopPeriod;
-if (argName === "Name") return Name;
+if (argName === "TimeInSeconds") return TimeInSeconds;
     return "";
   },
   getOnceTriggers: function() { return runtimeScene.getOnceTriggers(); }
 };
 
 
-gdjs.evtsExt__CameraShake__SetLoopPeriodY.eventsList0(runtimeScene, eventsFunctionContext);
+gdjs.evtsExt__TimeFormatter__SecondsToHHMMSS.eventsList0(runtimeScene, eventsFunctionContext);
 
 
-return;
+return "" + eventsFunctionContext.returnValue;
 }
 
-gdjs.evtsExt__CameraShake__SetLoopPeriodY.registeredGdjsCallbacks = [];
+gdjs.evtsExt__TimeFormatter__SecondsToHHMMSS.registeredGdjsCallbacks = [];
